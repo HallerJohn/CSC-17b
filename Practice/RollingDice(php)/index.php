@@ -12,11 +12,11 @@ and open the template in the editor.
         <?php   include 'Cup.php';   ?>
     </head>
     <body>
+        <h1>Roll Dice</h1>
         <?php
-        echo "Hello";
 //        $hi=new Cup;
+        echo "HI";
 //        $hi=new Dice;
-        echo "Hello";
         ?>
     </body>
 </html>

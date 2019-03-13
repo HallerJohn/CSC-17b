@@ -13,8 +13,8 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-//        $hi=new Cup;
-        $hi=new Dice
+        $hi=new Cup;
+//        $hi=new Dice
         ?>
     </body>
 </html>

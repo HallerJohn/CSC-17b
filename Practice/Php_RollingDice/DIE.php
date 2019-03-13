@@ -36,7 +36,7 @@ class Dice{
         return $this->DieName;
     }
     public function write(){
-        echo "<img src=".$this->getName();
+        echo "<img src=".$this->getName()." />";
         echo "<br/><br/>";
     }
     
