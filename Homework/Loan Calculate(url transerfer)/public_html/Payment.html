@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Use savings functions</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+                function payment(l,i,n){
+                    var intAmount=(l*i)/n;
+                    return l/n+intAmount;
+                }
+                function getForm(url){
+                    var info=url.split("?");
+                    var nameValuePairs=info[1].split("&");
+                    var $_GET = new Object;
+                    for(var i=0;i<nameValuePairs.length;i++){
+                        var map=nameValuePairs[i].split("=");
+                        var name=map[0];
+                        var value=map[1];
+                        $_GET[name]=value;
+                    }
+                return $_GET;
+            }
+        </script>
+        <style>
+            table,th,td {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var url=document.location.href;
+            $_GET=getForm(url);
+            
+            var loanAmount=$_GET['Loan_Amount'];
+            var interest=$_GET['Interest_Rate']/100;
+            var months=$_GET['Months'];
+            var monthlyPay=payment(loanAmount,interest,months);
+            
+            document.write("<p>Loan Amount      = $"+loanAmount+"<p>");
+            document.write("<p>Interest Rate    = "+interest*100+"%/month<p>");
+            document.write("<p>Number of Months = "+months+"<p>");
+            document.write("<p>Monthly Payment  = $"+monthlyPay.toFixed(2)+"<p>");
+            var monthCnt=1;
+            
+            while(loanAmount>0){
+                var intPaid=interest/months*loanAmount;
+                document.write('<table style="width: 20%">');
+                document.write('<tr><th>Month</th><th>Loan Remaining</th>');
+                document.write('<th>Interest Paid</th></tr>');
+                document.write('<tr><td>'+monthCnt+'</td>');
+                document.write('<td>'+Math.round(loanAmount*100)/100+'</td>');
+                document.write('<td>'+Math.round(intPaid*100)/100+'</td></tr>');
+                document.write('</table>');
+                loanAmount-=(monthlyPay-intPaid);
+                monthCnt++;
+            }
+        </script>
+    </body>
+</html>
