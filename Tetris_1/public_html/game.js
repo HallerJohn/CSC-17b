@@ -5,7 +5,9 @@
  */
 
 const canvas = document.getElementById('tetris');
+var scoreCanvas = document.getElementById('score');
 const context = canvas.getContext('2d');
+const scoreContext = scoreCanvas.getContext('2d');
 
 context.scale(20, 20);
 
@@ -22,6 +24,8 @@ drop.volume=1;
 var field = chooseField();
 var txf;//used to distinguish from a 3x3 and 4x4
 var pos;//used to determine the position of a I Block
+var score=0;//used to keep track of score, must be set to zero in new game but save high score later.
+var scoreTetris=0;//used to see if a tetris is scored in a row
 
 // Counts Tetrominos Dropped (ctrl+shift+J to view terminal)
 // ***Minor Bug*** Does not count first block dropped for some reason
@@ -33,7 +37,7 @@ var lCount=0;
 var zCount=0;
 var sCount=0;
 
-var fieldAry;
+var fieldAry = new Array;
 
 initField();
 
@@ -203,6 +207,7 @@ function updateField() {
     }
     ghostMove();//update ghost position
     draw();
+    drawScore();
 }
 
 //writing the block to the canvas
@@ -473,6 +478,9 @@ function rotate(dir) {
 //rest down and then rechecks line
 function lineDel(matrix) {
     var count = 0;//used to see if row is all 1's
+    var fs=0;//determines if any lines were destroyed so that the tetris can be checked
+    var scoreMultiplier=0;
+
     for (var i = 19; i>=0; i--) {
         for (var j = 11; j>=0; j--) {
             if(matrix[i][j]!==0){
@@ -482,7 +490,7 @@ function lineDel(matrix) {
         }
 //         console.log('end of loop');
         if(count>=12){
-//             console.log('hi');
+            scoreMultiplier++;
             for (var j = 0; j < 12; j++) {
                 for(var k=i;k>0;k--)//must be one less then then array set because there will be nothing to copy at the end
                 matrix[k][j] = matrix[k-1][j];
@@ -490,6 +498,45 @@ function lineDel(matrix) {
             i++; //reset line to determine if new line is also all 1's
         }
         count =0; //reset count for next line
+    }
+    if(fs>0){//scores based off tetris wiki
+        if(scoreMultiplier>=4){
+            scoreTetris++;
+            if(scoreTetris>1)//determines if this is a second tetris in a row
+                score+=(100*scoreMultiplier*3);
+            else
+                score+=(100*scoreMultiplier*2);
+        }
+        else{
+            score+=(100*scoreMultiplier);
+            scoreTetris=0;
+        }
+    }
+    gameOver(matrix);
+}
+
+function drawScore(){
+    scoreContext.fillStyle = '#2F4F4F';
+    scoreContext.fillRect(0, 0, scoreCanvas.width, scoreCanvas.height);
+    scoreContext.fillStyle = "Red";
+    scoreContext.font = "28px arial";
+    scoreContext.fillText("Score: "+score, 10, 50);
+    scoreContext.fillStyle = "Red";
+    scoreContext.font = "28px arial";
+    scoreContext.fillText("Line: ", 10, 100);
+    scoreContext.fillStyle = "Red";
+    scoreContext.font = "28px arial";
+    scoreContext.fillText("Level: 1", 10, 150);
+}
+
+function gameOver(matrix){
+    for (var i = 0; i>=0; i--) {
+        for (var j = 11; j>=0; j--) {
+            if(matrix[i][j]!==0){
+                playGame=false;
+               console.log("Game Over"); 
+            }
+        }
     }
 }
 
