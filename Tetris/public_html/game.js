@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-const canvas = document.getElementById('tetris');
+var canvas = document.getElementById('tetris');
 var scoreCanvas = document.getElementById('score');
 const nextCanvas = document.getElementById('next');
 const context = canvas.getContext('2d');
@@ -27,6 +27,7 @@ var txf;//used to distinguish from a 3x3 and 4x4
 var pos;//used to determine the position of a I Block
 var score=0;//used to keep track of score, must be set to zero in new game but save high score later.
 var scoreTetris=0;//used to see if a tetris is scored in a row
+var pause=false;//used to determine if the game is paused
 
 // Counts Tetrominos Dropped (ctrl+shift+J to view terminal)
 // ***Minor Bug*** Does not count first block dropped for some reason
@@ -47,12 +48,16 @@ function dropField(){
     fieldAry[1]=fieldAry[2];
     fieldAry[2]=fieldAry[3];
     fieldAry[3]=chooseField();
+    if(fieldAry[0].length===4)txf=1;
+    else if(fieldAry[0].length===3)txf=0;
 }
 
 function initField(){
     for(let i=0;i<4;i++){
         fieldAry[i]=chooseField();
     }
+    if(fieldAry[0].length===4)txf=1;
+    else if(fieldAry[0].length===3)txf=0;
 }
 
 var next = {
@@ -66,6 +71,10 @@ function writeNext(){
     writeField(nextContext, fieldAry[2], {x: 5, y: 5});
     writeField(nextContext, fieldAry[3], {x: 5, y: 10});
     
+}
+
+function paused(){
+    pause=!pause;
 }
 
 //Starting with the T block but will add more later
@@ -86,7 +95,7 @@ function chooseField() {
                 [1, 1, 1],
                 [0, 1, 0]
             ];
-            txf = 0;
+            //txf = 0; this is initialiced in the dropfield function
             break;
         case 1: //O-block
             oCount++;
@@ -95,7 +104,7 @@ function chooseField() {
                 [0, 2, 2],
                 [0, 0, 0]
             ];
-            txf=0;
+            //txf=0;
             break;
         case 2: //s-block
             sCount++;
@@ -104,7 +113,7 @@ function chooseField() {
                 [3, 3, 0],
                 [0, 0, 0]
             ];
-            txf=0;
+            //txf=0;
             break;
         case 3: //z-block
             zCount++;
@@ -113,7 +122,7 @@ function chooseField() {
                 [0, 4, 4],
                 [0, 0, 0]
             ];
-            txf=0;
+            //txf=0;
             break;
         case 4: //J-block
             jCount++;
@@ -122,7 +131,7 @@ function chooseField() {
                 [0, 0, 5],
                 [0, 5, 5]
             ];
-            txf=0;
+            //txf=0;
             break;
         case 5: //L-block
             lCount++;
@@ -131,7 +140,7 @@ function chooseField() {
                 [6, 0, 0],
                 [6, 6, 0]
             ];
-            txf=0;
+            //txf=0;
             break;
         case 6: //I-block
             iCount++;
@@ -141,7 +150,7 @@ function chooseField() {
                 [0, 0, 0, 0],
                 [0, 0, 0, 0]
             ];
-            txf=1;
+            //txf=1;
             pos=0;
             break;
     }
@@ -212,21 +221,21 @@ var interval = 1000 / fps;
 var delta;
 
 function updateField() {
-    requestAnimationFrame(updateField);
-    now = Date.now(); // Now becomes current time
-    delta = now - then; // Get your delta between now and last update
-    then = now; // change last update to now
-    
-    counter += delta; // Increase counter by the number of milliseconds since last update
-    
-    if (counter > interval) { // If counter is greater than current interval
-        counter = 0; // Reset counter
-        move('y', 1); // Drop block by one
-    }
-    ghostMove();//update ghost position
-    draw();
-    writeNext();
-    drawScore();
+        //requestAnimationFrame(updateField);
+        now = Date.now(); // Now becomes current time
+        delta = now - then; // Get your delta between now and last update
+        then = now; // change last update to now
+
+        counter += delta; // Increase counter by the number of milliseconds since last update
+
+        if (counter > interval) { // If counter is greater than current interval
+            counter = 0; // Reset counter
+            move('y', 1); // Drop block by one
+        }
+        ghostMove();//update ghost position
+        draw();
+        writeNext();
+        drawScore();
 }
 
 //writing the block to the canvas
@@ -273,6 +282,7 @@ function writeField(contxt, field, adjust,ghost=0) {
                     }case -1:{
                             contxt.fillStyle = 'rgba(255, 255, 255,.05)';
                             contxt.fillRect(x + adjust.x, y + adjust.y, 1, 1);
+                            break;
                     }
                 }
             }
@@ -294,22 +304,22 @@ var ghost = {//ghost block
 
 function move(axis, dir) {//switched back to this move function since the collision matrix already detects sides
     
-    if (axis === 'x') {
-        playerData.position.x += dir;
-        ghostMove();//update ghost position
-        if (collision(matrix, playerData)) {//if player hits something on x-axis it will move it back
-            playerData.position.x -= dir;
+        if (axis === 'x') {
+            playerData.position.x += dir;
             ghostMove();//update ghost position
+            if (collision(matrix, playerData)) {//if player hits something on x-axis it will move it back
+                playerData.position.x -= dir;
+                ghostMove();//update ghost position
+            }
+        } else if (axis === 'y') {
+            playerData.position.y += dir;
+            if (collision(matrix, playerData)) {//if player hit something on y-axis
+                playerData.position.y--;//move it back up
+                copyData(matrix, playerData);//copy to collision matrix
+                lineDel(matrix);//check if line needs to be deleted
+                reset();//reset player to the top
+            }
         }
-    } else if (axis === 'y') {
-        playerData.position.y += dir;
-        if (collision(matrix, playerData)) {//if player hit something on y-axis
-            playerData.position.y--;//move it back up
-            copyData(matrix, playerData);//copy to collision matrix
-            lineDel(matrix);//check if line needs to be deleted
-            reset();//reset player to the top
-        }
-    }
 }
 
 function reset() {//resets player position after a block is placed
@@ -322,53 +332,53 @@ function reset() {//resets player position after a block is placed
 }
 
 function fullDrop() {
-    while (!collision(matrix, playerData)) {
-         playerData.position.y++;
-    }
-    playerData.position.y--;
-    lineDel(matrix);//check if line needs to be deleted
+        while (!collision(matrix, playerData)) {
+             playerData.position.y++;
+        }
+        playerData.position.y--;
+        lineDel(matrix);//check if line needs to be deleted
 }
 
 function ghostMove(){
-    ghost.position.y=playerData.position.y;//reset ghost to top
-    ghost.position.x=playerData.position.x;//reset ghost to x pos of player
-    ghost.field=playerData.field;//reset block position
-    while(!collision(matrix,ghost)){
-        ghost.position.y++;//move ghost down until collision
-    }
-    ghost.position.y--;//move ghost back up from collision
+        ghost.position.y=playerData.position.y;//reset ghost to top
+        ghost.position.x=playerData.position.x;//reset ghost to x pos of player
+        ghost.field=playerData.field;//reset block position
+        while(!collision(matrix,ghost)){
+            ghost.position.y++;//move ghost down until collision
+        }
+        ghost.position.y--;//move ghost back up from collision
 }
 
 
 function Arotate(dir) {//this is a function for collision during rotating
-    if(txf===0){
-        rotate(dir);//normal rotation
-        //moving the block to check if it is posible the rotation
-        if (collision(matrix, playerData)) {//if a collsion happens after rotating
-            move('x',dir);  //try to move the block to rotate 
-            if (collision(matrix, playerData)) {//if a collsion happens after moving
-                move('x',-dir); //try to  move in other direction to rotate
-                if(collision(matrix,playerData))
-                   rotate(-dir);//rotate it back to make rotating action invalid
+        if(txf===0){
+            rotate(dir);//normal rotation
+            //moving the block to check if it is posible the rotation
+            if (collision(matrix, playerData)) {//if a collsion happens after rotating
+                move('x',dir);  //try to move the block to rotate 
+                if (collision(matrix, playerData)) {//if a collsion happens after moving
+                    move('x',-dir); //try to  move in other direction to rotate
+                    if(collision(matrix,playerData))
+                       rotate(-dir);//rotate it back to make rotating action invalid
+                }
             }
-        }
-    }else if(txf===1){
-        rotate(dir);//normal rotation
-        //moving the block to check if it is posible the rotation
-        if (collision(matrix, playerData)) {//if a collsion happens after rotating
-            move('x',dir);          //try to move the block to rotate
-            if (collision(matrix, playerData)) {//if a collsion happens after moving
-                move('x',2*dir);     //try to move the block to rotate
-                if(collision(matrix,playerData))
-                    move('x',-dir);  //try to move the block to rotate
-                    if (collision(matrix, playerData)) {//if a collsion happens after moving
-                    move('x',-2*dir);//try to move the block to rotate
-                        if(collision(matrix,playerData))//if all cases are invalid
-                        rotate(-dir);//rotate it back to make action invalid
+        }else if(txf===1){
+            rotate(dir);//normal rotation
+            //moving the block to check if it is posible the rotation
+            if (collision(matrix, playerData)) {//if a collsion happens after rotating
+                move('x',dir);          //try to move the block to rotate
+                if (collision(matrix, playerData)) {//if a collsion happens after moving
+                    move('x',2*dir);     //try to move the block to rotate
+                    if(collision(matrix,playerData))
+                        move('x',-dir);  //try to move the block to rotate
+                        if (collision(matrix, playerData)) {//if a collsion happens after moving
+                        move('x',-2*dir);//try to move the block to rotate
+                            if(collision(matrix,playerData))//if all cases are invalid
+                            rotate(-dir);//rotate it back to make action invalid
+                    }
                 }
             }
         }
-    }
 }
 
 function rotate(dir) {
@@ -562,41 +572,54 @@ function gameOver(matrix){
     }
 }
 
-updateField();
+//updateField();
+
+function game(){
+    requestAnimationFrame(game);
+    if(!pause){    
+        updateField();
+    }
+}
+
+game();
 
 document.onkeydown = function (event) {//controls
-    switch (event.keyCode) {
-        case 37:
-        {       //left arrow key
-            move('x', -1);
-            break;
-        }case 39:
-        {      //right arrow key
-            move('x', 1);
-            break;
-        }case 40:
-        {      //down arror key
-            move('y', 1);
-            counter = 0; // If block is lowered, reset interval
-            break;
-        }case 38:
-        {
-            fullDrop();// up arrow for hard drop
-            drop.play(); // Boop Sound
-            counter = 925; // If hard drop us pressed, force counter to be above interval
-            break;
-        }case 69:
-        {      //'E' key, Clockwise
-            Arotate(1);
-            break;
-        }case 81:
-        {      //'Q' key, Counter-Clockwise
-            Arotate(-1);
-            break;
-        }case 32:
-        {
-            fullDrop();
-            break;
+    if(!pause){
+        switch (event.keyCode) {
+            case 37:
+            {       //left arrow key
+                move('x', -1);
+                break;
+            }case 39:
+            {      //right arrow key
+                move('x', 1);
+                break;
+            }case 40:
+            {      //down arror key
+                move('y', 1);
+                counter = 0; // If block is lowered, reset interval
+                break;
+            }case 38:
+            {
+                fullDrop();// up arrow for hard drop
+                drop.play(); // Boop Sound
+                counter = 925; // If hard drop us pressed, force counter to be above interval
+                break;
+            }case 69:
+            {      //'E' key, Clockwise
+                Arotate(1);
+                break;
+            }case 81:
+            {      //'Q' key, Counter-Clockwise
+                Arotate(-1);
+                break;
+            }
+        }
+    }
+    switch (event.keyCode){
+            case 80:{
+                paused();
+                break;
         }
     }
 }
