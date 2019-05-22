@@ -12,6 +12,7 @@ session_start(); // Start a session.
 <table cellspacing="0" cellpadding="0" border="0" align="center" width="600">
 	<tr>
 		<td align="center" colspan="3"><img src="images/title.jpg" width="600" height="61" border="0" alt="title" /></td>
+                <td align="center" colspan="3"><a href="login.php"><img src="images/login.jpg" width="100" height="61" border="0" alt="Home page" /></a></td>
 	</tr>
 	<tr>
 		<td><a href="index.php"><img src="images/homePage.jpg" width="200" height="39" border="0" alt="Home page" /></a></td>
