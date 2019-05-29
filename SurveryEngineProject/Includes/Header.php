@@ -1,37 +1,29 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php # Script - header.html
+// This page begins the session, the HTML page, and the layout table.
+if(!isset($_SESSION)){
+    session_start(); // Start a session.
+}
+?><!DOCTYPE html>
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="includes/style.css" type="text/css" media="screen" />
-    </head>
-    <body>
-        <div id="header">
-            <h1>website name</h1>
-            <h1>slogan</h1>
-        </div>
-        <div id="navigation">
-            <ul>
-                <li><a href="index.php">Home Page</a></li>
-                <li><a href="survey.php">Take a survey!</a></li>
-                <li><a href="change.php">Change your answers</a></li>
-                <li>
-                    <?php
-                        if(isset($_SESSION['user_id'])){
-                            echo '<a href="logout.php">Logout</a></li>';
-                        } else {
-                            echo '<a href="login.php">Login</a></li>';
-                            echo '<li> <a href="register.">Register</a></li>';
-                        }
-                    ?>
-                
-            </ul>
-        </div>
-    </body>
-</html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title><?php echo (isset($page_title)) ? $page_title : 'Welcome!'; ?></title>
+</head>
+<body>
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="600">
+	<tr>
+		<td align="center" colspan="3"><img src="Images/title.jpg" width="600" height="61" border="0" alt="title" /></td>
+                <?php if(isset($_SESSION['account_id'])){ ?>
+                    <td align="center" colspan="3"><a href="logout.php"><img src="Images/logout.jpg" width="100" height="61" border="0" alt="Home page" /></a></td>
+                <?php }else{ ?>
+                    <td align="center" colspan="3"><a href="login.php"><img src="Images/login.jpg" width="100" height="61" border="0" alt="Home page" /></a></td>
+                    <td align="center" colspan="3"><a href="register.php"><img src="Images/register.jpg" width="100" height="61" border="0" alt="Home page" /></a></td>
+                <?php } ?>
+	</tr>
+	<tr>
+		<td><a href="index.php"><img src="Images/home.jpg" width="200" height="39" border="0" alt="Home page" /></a></td>
+                <td><a href="take_survey.php"><img src="Images/TakeSurvey.jpg" width="200" height="39" border="0" alt="Take a Survey" /></a></td>
+		<td><a href="view_answers.php"><img src="Images/view.jpg" width="200" height="39" border="0" alt="View your cart" /></a></td>
+	</tr>
+	<tr>
+		<td align="left" colspan="3" bgcolor="#007a99"><br />

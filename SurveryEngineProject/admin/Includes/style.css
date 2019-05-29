@@ -1,4 +1,3 @@
-    
 /*
 	Author	:	Christopher Robinson
 	Email		:	christopher@edg3.co.uk
@@ -58,13 +57,13 @@ body {
 	width:750px;
 	height:40px;
 	list-style:none;
-        border-bottom: 1px solid #999;
 }
 #navigation li {
 	border-left:1px solid #999;
 	float:left;
 	width:149px;
 	list-style:none;
+        border-bottom: 1px solid #999;
 }
 #navigation a {
 	color:#555;
@@ -117,7 +116,7 @@ input, select, .input {
 	padding: 5px;
 	font-weight: bold;
 	font-size: 1em;
-	color: #66e0ff;
+	color: #008040;
 	background: #FFFFFF;
 	border:1px dotted #004080;
 }
