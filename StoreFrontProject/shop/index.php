@@ -7,13 +7,13 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>You can get it!</title>
+        <title>Store</title>
     </head>
     <body>
     <?php
         include('Includes/Header.php');
     ?>
-        <p>Welcome to the wooden spoon and office supply store!</p>
+        <p>Welcome to the wooden spoon store!</p>
         <p>Please use the links above to navigate the site.</p>
     </body>
 </html>

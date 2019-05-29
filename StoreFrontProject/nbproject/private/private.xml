@@ -3,8 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rcc/Desktop/HallerJohn/CSC-17b/StoreFrontProject/dbConnect.php</file>
-            <file>file:/C:/Users/rcc/Desktop/HallerJohn/CSC-17b/StoreFrontProject/Inventory.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/Includes/Header.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/Includes/Footer.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/Includes/login_functions.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/index.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/admin/addItem.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/view_users.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/Includes/login_page.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/register.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/view_items.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/display_item.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/view_cart.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/login.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/edit_user.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/loggedIn.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/display_image.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/register.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/index.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/login.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/loggedIn.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/logout.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/add_to_cart.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/Includes/Footer.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/checkout.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/Includes/login_functions.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/Includes/Header.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/logout.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/delete_user.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/password.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/login_page.php</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/shop/Images/image_unavailable.jpg</file>
+            <file>file:/C:/xampp/htdocs/StoreFrontProject/user_login/Includes/style.css</file>
         </group>
     </open-files>
 </project-private>
