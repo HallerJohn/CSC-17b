@@ -1,4 +1,4 @@
-<?php # Script - view_cart.php
+<?php 
 // This page displays the contents of the shopping cart.
 // This page also lets the user update the contents of the cart.
 // Set the page title and include the HTML header:

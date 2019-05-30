@@ -3,6 +3,7 @@
 session_start();
 $page_title = 'Add a question';
 include ('Includes/Header.php');
+include ('Includes/login_functions.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     require('../dbConnect.php');
@@ -18,6 +19,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     } else {
         echo "error: ".$q . "<br>" . $conn->error;
     }
+    
+    $q =mysqli_query ($conn,"SELECT * FROM entity_questions");
+    $numRows = mysqli_num_rows($q);
+    $col = "ans_".($numRows);
+    
+    $q = "ALTER TABLE entity_answers ADD $col VARCHAR( 255 )";
+    $rs = mysqli_query($conn,$q);
+    if($rs){
+        console_log("New column added to table");
+    }
+    
     mysqli_close($conn);
     include ('Includes/Footer.php');
     exit();

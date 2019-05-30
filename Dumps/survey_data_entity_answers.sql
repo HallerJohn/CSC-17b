@@ -16,31 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `entity_accounts`
+-- Table structure for table `entity_answers`
 --
 
-DROP TABLE IF EXISTS `entity_accounts`;
+DROP TABLE IF EXISTS `entity_answers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `entity_accounts` (
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) DEFAULT NULL,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `registration_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE `entity_answers` (
+  `survey_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ans_1` varchar(255) DEFAULT NULL,
+  `ans_2` varchar(255) DEFAULT NULL,
+  `ans_3` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`survey_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `entity_accounts`
+-- Dumping data for table `entity_answers`
 --
 
-LOCK TABLES `entity_accounts` WRITE;
-/*!40000 ALTER TABLE `entity_accounts` DISABLE KEYS */;
-INSERT INTO `entity_accounts` VALUES (1,'4jfhaller@gmail.com','John','Haller','2','2019-05-29 12:30:08');
-/*!40000 ALTER TABLE `entity_accounts` ENABLE KEYS */;
+LOCK TABLES `entity_answers` WRITE;
+/*!40000 ALTER TABLE `entity_answers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `entity_answers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

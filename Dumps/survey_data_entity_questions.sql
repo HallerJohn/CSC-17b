@@ -31,7 +31,7 @@ CREATE TABLE `entity_questions` (
   `answer_4` varchar(255) DEFAULT NULL,
   `answer_5` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `entity_questions` (
 
 LOCK TABLES `entity_questions` WRITE;
 /*!40000 ALTER TABLE `entity_questions` DISABLE KEYS */;
-INSERT INTO `entity_questions` VALUES (1,'How tall are you?','>6','>5','>4','>3','>2');
+INSERT INTO `entity_questions` VALUES (1,'Which color do you like most','Blue','Green','Red','Yellow','Purple'),(2,'Which soda do you like most?','Coke','Dr. Pepper','Sprite','Diet Coke','Root Beer'),(3,'Which number do you like most?','1','2','3','4','5');
 /*!40000 ALTER TABLE `entity_questions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-29 14:42:42
+-- Dump completed on 2019-05-30 14:01:11
