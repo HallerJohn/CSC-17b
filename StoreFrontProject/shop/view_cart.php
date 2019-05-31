@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 if (!empty($_SESSION['cart'])) {
 	// Retrieve all of the information for the prints in the cart:
 	require ('../dbConnect.php'); // Connect to the database.
-	$q = "SELECT item_id, item_name FROM entity_items WHERE item_id IN (";
+	$q = "SELECT item_id, item_name FROM haller_shop_entity_items WHERE item_id IN (";
 	foreach ($_SESSION['cart'] as $iid => $value) {
 		$q .= $iid . ',';
 	}

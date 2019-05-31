@@ -40,7 +40,7 @@
         $desc = (!empty($_POST['description'])) ? trim($_POST['description']) : NULL;
 
         if(empty($errors)){
-            $query = "INSERT INTO entity_items (item_name, price, description, image_name) VALUES (?,?,?,?)";
+            $query = "INSERT INTO haller_shop_entity_items (item_name, price, description, image_name) VALUES (?,?,?,?)";
             $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_bind_param($stmt, 'sdss', $itemName, $price, $desc, $i);
             mysqli_stmt_execute($stmt);

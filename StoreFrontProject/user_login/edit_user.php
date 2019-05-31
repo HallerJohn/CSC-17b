@@ -41,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	if (empty($errors)) { //if there are no errors
 	
-		$query = "SELECT account_id FROM entity_account_information WHERE email_address='$e' AND account_id != $id";
+		$query = "SELECT account_id FROM haller_shop_entity_account_information WHERE email_address='$e' AND account_id != $id";
 		$r = @mysqli_query($conn, $query);
 		if (mysqli_num_rows($r) == 0) {
-			$query = "UPDATE entity_account_information SET first_name='$fn', last_name='$ln', email_address='$e' WHERE account_id=$id LIMIT 1";//query to update account info
+			$query = "UPDATE haller_shop_entity_account_information SET first_name='$fn', last_name='$ln', email_address='$e' WHERE account_id=$id LIMIT 1";//query to update account info
 			$r = @mysqli_query ($conn, $query);
 			if (mysqli_affected_rows($conn) == 1) { // If it ran OK.
 				// Print a message:
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	} 
 } 
-$q = "SELECT first_name, last_name, email_address FROM entity_account_information WHERE account_id=$id";//get the new first,last name and email	
+$q = "SELECT first_name, last_name, email_address FROM haller_shop_entity_account_information WHERE account_id=$id";//get the new first,last name and email	
 $r = @mysqli_query ($conn, $q);
 if (mysqli_num_rows($r) == 1) { 
 	$row = mysqli_fetch_array ($r, MYSQLI_NUM);

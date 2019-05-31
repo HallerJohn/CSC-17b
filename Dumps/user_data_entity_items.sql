@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win32 (AMD64)
 --
--- Host: 127.0.0.1    Database: survey_data
+-- Host: 127.0.0.1    Database: user_data
 -- ------------------------------------------------------
 -- Server version	10.1.38-MariaDB
 
@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `entity_accounts`
+-- Table structure for table `entity_items`
 --
 
-DROP TABLE IF EXISTS `entity_accounts`;
+DROP TABLE IF EXISTS `entity_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `entity_accounts` (
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) DEFAULT NULL,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `registration_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `entity_items` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(45) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `image_name` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `entity_accounts`
+-- Dumping data for table `entity_items`
 --
 
-LOCK TABLES `entity_accounts` WRITE;
-/*!40000 ALTER TABLE `entity_accounts` DISABLE KEYS */;
-INSERT INTO `entity_accounts` VALUES (1,'4jfhaller@gmail.com','John','Haller','2','2019-05-29 12:30:08'),(3,'123@.com','Elise','Chue','Cromlech@5','2019-05-30 20:48:39'),(4,'123@123.com','Elise','Chue','Butt+1','2019-05-30 20:49:34'),(5,'private@noturbussiness.com','Karen','Haller','Butt+1','2019-05-30 21:40:49');
-/*!40000 ALTER TABLE `entity_accounts` ENABLE KEYS */;
+LOCK TABLES `entity_items` WRITE;
+/*!40000 ALTER TABLE `entity_items` DISABLE KEYS */;
+INSERT INTO `entity_items` VALUES (1,'wooden spoon',2,'a great wooden spoon','wooden_spoon.jpg'),(2,'five wooden spoons',15,'A collection of five wooden spoons, two of which are slotted spoons. great for the kids!','wooden_spoon_collection.jpg'),(3,'simple wood spoon',0.5,'a super simple wooden spoon, fairly lightweight.','basic_wood_spoon.jpg'),(4,'spoons with red handle',5,'various spoons with red handle','red_handle_spoons.jpg');
+/*!40000 ALTER TABLE `entity_items` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

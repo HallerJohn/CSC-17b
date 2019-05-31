@@ -36,13 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	
 	if (empty($errors)) { 
-		$q = "SELECT account_id FROM entity_account_information WHERE (email_address='$e' AND password='$p' )";
+		$q = "SELECT account_id FROM haller_shop_entity_account_information WHERE (email_address='$e' AND password='$p' )";
 		$r = @mysqli_query($conn, $q);
 		$num = @mysqli_num_rows($r);
 		if ($num == 1) { // Match was made.
 	
 			$row = mysqli_fetch_array($r, MYSQLI_NUM);
-			$q = "UPDATE entity_account_information SET password='$np' WHERE account_id=$row[0]";//query to update password	
+			$q = "UPDATE haller_shop_entity_account_information SET password='$np' WHERE account_id=$row[0]";//query to update password	
 			$r = @mysqli_query($conn, $q);
 			
 			if (mysqli_affected_rows($conn) == 1) { //check if password was updated

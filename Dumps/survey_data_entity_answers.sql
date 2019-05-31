@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.34-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win32 (AMD64)
 --
--- Host: localhost    Database: survey_data
+-- Host: 127.0.0.1    Database: survey_data
 -- ------------------------------------------------------
--- Server version	10.1.34-MariaDB
+-- Server version	10.1.38-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,8 +27,9 @@ CREATE TABLE `entity_answers` (
   `ans_1` varchar(255) DEFAULT NULL,
   `ans_2` varchar(255) DEFAULT NULL,
   `ans_3` varchar(255) DEFAULT NULL,
+  `ans_4` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`survey_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +38,7 @@ CREATE TABLE `entity_answers` (
 
 LOCK TABLES `entity_answers` WRITE;
 /*!40000 ALTER TABLE `entity_answers` DISABLE KEYS */;
+INSERT INTO `entity_answers` VALUES (1,'Blue','Dr. Pepper','2',NULL),(2,'Blue','Sprite','3',NULL),(3,'Blue','Coke','1',NULL),(4,'Red','Dr. Pepper','2',NULL),(5,'Red','Sprite','1',NULL),(6,'Blue','Dr. Pepper','2','Water'),(7,'Purple','Dr. Pepper','3','Air'),(8,'Blue','Dr. Pepper','1','Water');
 /*!40000 ALTER TABLE `entity_answers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-30 14:01:11
+-- Dump completed on 2019-05-30 23:10:35

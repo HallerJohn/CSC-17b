@@ -20,7 +20,7 @@ require ('../dbConnect.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($_POST['sure'] == 'Yes') { 
-		$q = "DELETE FROM entity_account_information WHERE account_id=$id LIMIT 1";	//qeury to delete account	
+		$q = "DELETE FROM haller_shop_entity_account_information WHERE account_id=$id LIMIT 1";	//qeury to delete account	
 		$r = @mysqli_query ($conn, $q);
 		if (mysqli_affected_rows($conn) == 1) { //check if row in db was deleted
 			echo '<p>The user has been deleted.</p>';	
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo '<p>The user has NOT been deleted.</p>';	
 	}
 } else { 
-	$q = "SELECT CONCAT(last_name, ', ', first_name) FROM entity_account_information WHERE account_id=$id";
+	$q = "SELECT CONCAT(last_name, ', ', first_name) FROM haller_shop_entity_account_information WHERE account_id=$id";
 	$r = @mysqli_query ($conn, $q);
 	if (mysqli_num_rows($r) == 1) { // Valid user ID, show the form.
 		// Get the user's information:

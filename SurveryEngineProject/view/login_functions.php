@@ -30,7 +30,7 @@ function check_login($conn, $email = '', $pass = '') {
 	}
 	if (empty($errors)) { 
 		// Retrieve the user_id and first_name for that email/password combination:
-		$q = "SELECT account_id, first_name FROM entity_accounts WHERE email='$e' AND password='$p'";		
+		$q = "SELECT account_id, first_name FROM haller_survey_entity_accounts WHERE email='$e' AND password='$p'";		
 		$r = @mysqli_query ($conn, $q); // Run the query.
 		
 		if (mysqli_num_rows($r) == 1) {
@@ -55,4 +55,14 @@ function console_log( $data ) {
   $output .= json_encode(print_r($data, true));
   $output .= "' );</script>";
   echo $output;
+}
+
+
+function check_regex($string){
+    $re = '((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})';
+    if(preg_match($re,$string)){
+        return true;
+    }else{
+        return false;
+    }
 }

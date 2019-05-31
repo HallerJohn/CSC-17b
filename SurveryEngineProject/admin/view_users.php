@@ -3,7 +3,7 @@
 
 session_start();//start session
 $page_title = 'View the Current Users';
-include ('Includes/Header.php');
+include ('View/Header.php');
 echo '<h1>Registered Users</h1>';
 require ('../dbConnect.php');
 // Number of records to show per page:
@@ -12,7 +12,7 @@ $display = 10;
 if (isset($_GET['p']) && is_numeric($_GET['p'])) { 
 	$pages = $_GET['p'];
 } else { 
-	$q = "SELECT COUNT(account_id) FROM entity_accounts";
+	$q = "SELECT COUNT(account_id) FROM haller_survey_entity_accounts";
 	$r = @mysqli_query ($conn, $q);
 	$row = @mysqli_fetch_array ($r, MYSQLI_NUM);
 	$records = $row[0];
@@ -47,7 +47,7 @@ switch ($sort) {
 }
 	
 //query to get name/registration date from database
-$q = "SELECT last_name, first_name, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, account_id FROM entity_accounts ORDER BY $order_by LIMIT $start, $display";		
+$q = "SELECT last_name, first_name, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, account_id FROM haller_survey_entity_accounts ORDER BY $order_by LIMIT $start, $display";		
 $r = @mysqli_query ($conn, $q); 
 //table for results
 echo '<table align="center" cellspacing="0" cellpadding="5" width="75%">
@@ -100,5 +100,5 @@ if ($pages > 1) {
 	
 } 
 	
-include ('Includes/Footer.php');
+include ('View/Footer.php');
 ?>

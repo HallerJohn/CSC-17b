@@ -6,7 +6,7 @@ include ('../user_login/Includes/login_functions.php');
 if (isset($_GET['iid']) && filter_var($_GET['iid'], FILTER_VALIDATE_INT, array('min_range' => 1)) ) { 
 	$iid = $_GET['iid'];
 	require ('../dbConnect.php'); 
-	$q = "SELECT item_name, price, description, image_name FROM entity_items WHERE item_id=$iid";
+	$q = "SELECT item_name, price, description, image_name FROM haller_shop_entity_items WHERE item_id=$iid";
 	$r = mysqli_query ($conn, $q);
 	if (mysqli_num_rows($r) == 1) { 
 		$row = mysqli_fetch_array ($r, MYSQLI_ASSOC);

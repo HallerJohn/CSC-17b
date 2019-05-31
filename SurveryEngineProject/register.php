@@ -1,6 +1,6 @@
 <?php
 
-include ('Includes/Header.php');
+include ('View/Header.php');
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     require ('dbConnect.php');
@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     if(empty($_POST['email'])){
         $errors[] = "You did not enter an email address";
     } else {
-        $query = mysqli_query($conn,"SELECT email FROM entity_accounts WHERE email='".$_POST['email']."'");
+        $query = mysqli_query($conn,"SELECT email FROM haller_survey_entity_accounts WHERE email='".$_POST['email']."'");
         if(mysqli_num_rows($query)!=0){
             $errors [] = "That email is associated with another account";
         } else {
@@ -34,26 +34,30 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
     
     //Check if password is empty
-    if(empty($_POST['pass1'])||empty($_POST['pass2'])){
-        $errors[] = "You need to enter and confirm your password";
-    } else {
-        if($_POST['pass1']!==$_POST['pass2']){
-            $errors[] = "Your passwords did not match";
+    if(empty($_POST['pass1'])){
+            $errors[] = 'You did not enter a password.';
         } else {
-            $password = mysqli_real_escape_string($conn,trim($_POST['pass1']));
+            if($_POST['pass1']==$_POST['pass2']){
+                if(preg_match("((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+]).{6,20})",$_POST['pass1'])){
+                    $password = mysqli_real_escape_string($conn,trim($_POST['pass1']));
+                }else{
+                    $errors[] = "Your password needs one lowercase, one uppercase, one number, one special character, and be between 6-20 characters";
+                }
+            } else {
+                $errors[] = 'Your passwords did not match.';
+            }
         }
-    }
     
     //if no errors
     if(empty($errors)){
-        $query = "INSERT INTO entity_accounts (email, first_name, last_name, password, registration_date) VALUES ('$email', '$first_name', '$last_name', '$password', NOW())";
+        $query = "INSERT INTO haller_survey_entity_accounts (email, first_name, last_name, password, registration_date) VALUES ('$email', '$first_name', '$last_name', '$password', NOW())";
         if ($conn->query($query) === TRUE){
             echo "You have succesfully registered";
         } else {
             echo "error: ".$query . "<br>" . $conn->error;
         }
         mysqli_close($conn);
-        include ('Includes/Footer.php');
+        include ('View/Footer.php');
         exit();
     } else {
         echo '<h1>Error!</h1>'
@@ -77,4 +81,4 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 	<p>Confirm Password: <input type="password" name="pass2" size="10" maxlength="20" value="<?php if (isset($_POST['pass2'])) echo $_POST['pass2']; ?>"  /></p>
 	<p><input type="submit" name="submit" value="Register" /></p>
 </form>
-<?php include ('Includes/Footer.php'); ?>
+<?php include ('View/Footer.php'); ?>

@@ -2,8 +2,8 @@
 
 //this page edits account first name, last name, or email
 $page_title = 'Edit a User';
-include ('Includes/Header.php');
-include ('Includes/login_functions.php');
+include ('View/Header.php');
+include ('View/login_functions.php');
 echo '<h1>Edit a User</h1>';
 // Check for a valid account ID
 if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { 
@@ -12,7 +12,7 @@ if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) {
 	$id = $_POST['id'];
 } else { // No valid ID, exit page
 	echo '<p class="error">This page has been accessed in error.</p>';
-	include ('Includes/Footer.php'); 
+	include ('View/Footer.php'); 
 	exit();
 }
 require ('../dbConnect.php'); 
@@ -42,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	if (empty($errors)) { //if there are no errors
 	
-		$query = "SELECT account_id FROM entity_accounts WHERE email='$e' AND account_id != $id";
+		$query = "SELECT account_id FROM haller_survey_entity_accounts WHERE email='$e' AND account_id != $id";
 		$r = @mysqli_query($conn, $query);
 		if (mysqli_num_rows($r) == 0) {
-			$query = "UPDATE entity_accounts SET first_name='$fn', last_name='$ln', email='$e' WHERE account_id=$id LIMIT 1";//query to update account info
+			$query = "UPDATE haller_survey_entity_accounts SET first_name='$fn', last_name='$ln', email='$e' WHERE account_id=$id LIMIT 1";//query to update account info
 			$r = @mysqli_query ($conn, $query);
 			if (mysqli_affected_rows($conn) == 1) { // If it ran OK.
 				// Print a message:
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } 
 console_log('THE account id is');
 console_log($id);
-$q = "SELECT first_name, last_name, email FROM entity_accounts WHERE account_id=$id";//get the new first,last name and email	
+$q = "SELECT first_name, last_name, email FROM haller_survey_entity_accounts WHERE account_id=$id";//get the new first,last name and email	
 $r = @mysqli_query ($conn, $q);
 if (mysqli_num_rows($r) == 1) { 
 	$row = mysqli_fetch_array ($r, MYSQLI_NUM);
@@ -88,5 +88,5 @@ if (mysqli_num_rows($r) == 1) {
 }
 mysqli_close($conn);
 		
-include ('Includes/Footer.php');
+include ('View/Footer.php');
 ?>

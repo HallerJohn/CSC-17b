@@ -2,7 +2,7 @@
 
 //The page deletes a user from the database
 $page_title = 'Delete a User';
-include ('Includes/Header.php');
+include ('View/Header.php');
 echo '<h1>Delete a User</h1>';
 
 //check account_id
@@ -12,7 +12,7 @@ if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) {
 	$id = $_POST['id'];
 } else { //if id is not valid exit page
 	echo '<p class="error">This page has been accessed in error.</p>';
-	include ('Includes/Footer.php'); 
+	include ('View/Footer.php'); 
 	exit();
 }
 require ('../dbConnect.php');
@@ -20,7 +20,7 @@ require ('../dbConnect.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($_POST['sure'] == 'Yes') { 
-		$q = "DELETE FROM entity_accounts WHERE account_id=$id LIMIT 1";	//qeury to delete account	
+		$q = "DELETE FROM haller_survey_entity_accounts WHERE account_id=$id LIMIT 1";	//qeury to delete account	
 		$r = @mysqli_query ($conn, $q);
 		if (mysqli_affected_rows($conn) == 1) { //check if row in db was deleted
 			echo '<p>The user has been deleted.</p>';	
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo '<p>The user has NOT been deleted.</p>';	
 	}
 } else { 
-	$q = "SELECT CONCAT(last_name, ', ', first_name) FROM entity_accounts WHERE account_id=$id";
+	$q = "SELECT CONCAT(last_name, ', ', first_name) FROM haller_survey_entity_accounts WHERE account_id=$id";
 	$r = @mysqli_query ($conn, $q);
 	if (mysqli_num_rows($r) == 1) { // Valid user ID, show the form.
 		// Get the user's information:
@@ -57,5 +57,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } 
 mysqli_close($conn);
 		
-include ('Includes/Footer.php');
+include ('View/Footer.php');
 ?>

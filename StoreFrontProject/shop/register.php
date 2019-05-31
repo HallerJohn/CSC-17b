@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(empty($_POST['email'])){
             $errors[] = 'You did not enter an email address.';
         } else {
-            $query = mysqli_query($conn,"SELECT email_address FROM entity_account_information WHERE email_address='".$_POST['email']."'");
+            $query = mysqli_query($conn,"SELECT email_address FROM haller_shop_entity_account_information WHERE email_address='".$_POST['email']."'");
             if(mysqli_num_rows($query) != 0){
                 $errors[] = 'That email is associated with another account.';
             } else {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if(empty($errors)){
             //query to input data to database
-            $query = "INSERT INTO entity_account_information (email_address, first_name, last_name, password,registration_date) VALUES ('$email', '$firstName', '$lastName','$password',NOW())";
+            $query = "INSERT INTO haller_shop_entity_account_information (email_address, first_name, last_name, password,registration_date) VALUES ('$email', '$firstName', '$lastName','$password',NOW())";
             
             if ($conn->query($query) === TRUE) {
                 echo "You have succesfully registered";

@@ -3,7 +3,7 @@
 session_start();
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    require('Includes/login_functions.php');
+    require('View/login_functions.php');
     require('../dbConnect.php');
     
     list ($check, $data) = check_login($conn, $_POST['email'], $_POST['pass']);
@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 }
 
 $page_title = 'Login';
-include ('Includes/Header.php');
+include ('View/Header.php');
 if (isset($errors) && !empty($errors)) {
 	echo '<h1>Error!</h1>
 	<p class="error">The following error(s) occurred:<br />';
@@ -41,4 +41,4 @@ if (isset($errors) && !empty($errors)) {
 	<p><input type="submit" name="submit" value="Login" /></p>
 </form>
 
-<?php include ('Includes/Footer.php');
+<?php include ('View/Footer.php');

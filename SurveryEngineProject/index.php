@@ -7,11 +7,11 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Store</title>
+        <title>Survey</title>
     </head>
     <body>
     <?php
-        include('Includes/Header.php');
+        include('View/Header.php');
     ?>
         <p>Welcome to Surveys R Us!</p>
         <p>Please use the links above to navigate the site.</p>

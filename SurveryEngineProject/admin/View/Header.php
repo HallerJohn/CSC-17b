@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title><?php echo $page_title; ?></title>	
-	<link rel="stylesheet" href="includes/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="View/style.css" type="text/css" media="screen" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 </head>
 <body>

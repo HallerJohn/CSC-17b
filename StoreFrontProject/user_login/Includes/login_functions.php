@@ -30,7 +30,7 @@ function check_login($conn, $email = '', $pass = '') {
 	}
 	if (empty($errors)) { 
 		// Retrieve the user_id and first_name for that email/password combination:
-		$q = "SELECT account_id, first_name FROM entity_account_information WHERE email_address='$e' AND password='$p'";		
+		$q = "SELECT account_id, first_name FROM haller_shop_entity_account_information WHERE email_address='$e' AND password='$p'";		
 		$r = @mysqli_query ($conn, $q); // Run the query.
 		
 		if (mysqli_num_rows($r) == 1) {

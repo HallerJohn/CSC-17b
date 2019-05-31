@@ -16,31 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `entity_accounts`
+-- Table structure for table `xref_accounts_answers`
 --
 
-DROP TABLE IF EXISTS `entity_accounts`;
+DROP TABLE IF EXISTS `xref_accounts_answers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `entity_accounts` (
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) DEFAULT NULL,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `registration_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `xref_accounts_answers` (
+  `account_id` int(11) NOT NULL,
+  `survey_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`survey_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `entity_accounts`
+-- Dumping data for table `xref_accounts_answers`
 --
 
-LOCK TABLES `entity_accounts` WRITE;
-/*!40000 ALTER TABLE `entity_accounts` DISABLE KEYS */;
-INSERT INTO `entity_accounts` VALUES (1,'4jfhaller@gmail.com','John','Haller','2','2019-05-29 12:30:08'),(3,'123@.com','Elise','Chue','Cromlech@5','2019-05-30 20:48:39'),(4,'123@123.com','Elise','Chue','Butt+1','2019-05-30 20:49:34'),(5,'private@noturbussiness.com','Karen','Haller','Butt+1','2019-05-30 21:40:49');
-/*!40000 ALTER TABLE `entity_accounts` ENABLE KEYS */;
+LOCK TABLES `xref_accounts_answers` WRITE;
+/*!40000 ALTER TABLE `xref_accounts_answers` DISABLE KEYS */;
+INSERT INTO `xref_accounts_answers` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(4,7),(1,8);
+/*!40000 ALTER TABLE `xref_accounts_answers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

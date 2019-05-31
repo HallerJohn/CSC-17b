@@ -1,12 +1,12 @@
 <?php
 
-include ('Includes/Header.php');
-include ('Includes/login_functions.php');
+include ('View/Header.php');
+include ('View/login_functions.php');
 require ('dbConnect.php');
 
 if(isset($_SESSION['account_id'])){
 
-    $q = "SELECT question FROM entity_questions";
+    $q = "SELECT question FROM haller_survey_entity_questions";
     $result = $conn->query($q);
     $numQues = $result->num_rows;
     $questions = array();
@@ -21,7 +21,7 @@ if(isset($_SESSION['account_id'])){
 
     //Use Prepared statements and manually insert each row/col into an array
     $answers = array();
-    $stmt = mysqli_prepare($conn,"SELECT answer_1, answer_2, answer_3, answer_4, answer_5 FROM entity_questions WHERE question_id = ?");
+    $stmt = mysqli_prepare($conn,"SELECT answer_1, answer_2, answer_3, answer_4, answer_5 FROM haller_survey_entity_questions WHERE question_id = ?");
     for($i = 0; $i<$numQues; $i++){
         $z = $i+1;
         $stmt->bind_param("i",$z);

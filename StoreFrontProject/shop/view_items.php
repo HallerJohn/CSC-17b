@@ -5,7 +5,7 @@ include ('../user_login/Includes/login_functions.php');
 include ('Includes/Header.php');
 require ('../dbConnect.php');
  
-$q = "SELECT item_id, item_name, price, description, image_name  FROM entity_items";
+$q = "SELECT item_id, item_name, price, description, image_name  FROM haller_shop_entity_items";
 
 echo '<table border="0" width="90%" cellspacing="3" cellpadding="3" align="center">
 	<tr>

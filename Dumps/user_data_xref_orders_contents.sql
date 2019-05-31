@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win32 (AMD64)
 --
--- Host: 127.0.0.1    Database: survey_data
+-- Host: 127.0.0.1    Database: user_data
 -- ------------------------------------------------------
 -- Server version	10.1.38-MariaDB
 
@@ -16,31 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `entity_accounts`
+-- Table structure for table `xref_orders_contents`
 --
 
-DROP TABLE IF EXISTS `entity_accounts`;
+DROP TABLE IF EXISTS `xref_orders_contents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `entity_accounts` (
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) DEFAULT NULL,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `registration_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `xref_orders_contents` (
+  `order_id` int(11) NOT NULL,
+  `transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`transaction_id`,`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `entity_accounts`
+-- Dumping data for table `xref_orders_contents`
 --
 
-LOCK TABLES `entity_accounts` WRITE;
-/*!40000 ALTER TABLE `entity_accounts` DISABLE KEYS */;
-INSERT INTO `entity_accounts` VALUES (1,'4jfhaller@gmail.com','John','Haller','2','2019-05-29 12:30:08'),(3,'123@.com','Elise','Chue','Cromlech@5','2019-05-30 20:48:39'),(4,'123@123.com','Elise','Chue','Butt+1','2019-05-30 20:49:34'),(5,'private@noturbussiness.com','Karen','Haller','Butt+1','2019-05-30 21:40:49');
-/*!40000 ALTER TABLE `entity_accounts` ENABLE KEYS */;
+LOCK TABLES `xref_orders_contents` WRITE;
+/*!40000 ALTER TABLE `xref_orders_contents` DISABLE KEYS */;
+INSERT INTO `xref_orders_contents` VALUES (1,19),(2,20),(3,21),(4,22),(5,23),(6,24),(7,25),(8,26);
+/*!40000 ALTER TABLE `xref_orders_contents` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

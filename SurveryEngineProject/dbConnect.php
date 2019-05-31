@@ -1,10 +1,10 @@
 <?php 
 //This file connects to the database and queries information to it
     //Establish connection
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "survey_data";
+    $servername = "209.129.8.7";
+    $username = "44085";
+    $password = "csc17B44085";
+    $dbname = "44085";
     // Make the connection:
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection

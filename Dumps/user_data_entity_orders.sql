@@ -1,6 +1,6 @@
 -- MySQL dump 10.16  Distrib 10.1.38-MariaDB, for Win32 (AMD64)
 --
--- Host: 127.0.0.1    Database: survey_data
+-- Host: 127.0.0.1    Database: user_data
 -- ------------------------------------------------------
 -- Server version	10.1.38-MariaDB
 
@@ -16,31 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `entity_accounts`
+-- Table structure for table `entity_orders`
 --
 
-DROP TABLE IF EXISTS `entity_accounts`;
+DROP TABLE IF EXISTS `entity_orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `entity_accounts` (
-  `account_id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) DEFAULT NULL,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `registration_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE `entity_orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `total` float DEFAULT NULL,
+  `order_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `entity_accounts`
+-- Dumping data for table `entity_orders`
 --
 
-LOCK TABLES `entity_accounts` WRITE;
-/*!40000 ALTER TABLE `entity_accounts` DISABLE KEYS */;
-INSERT INTO `entity_accounts` VALUES (1,'4jfhaller@gmail.com','John','Haller','2','2019-05-29 12:30:08'),(3,'123@.com','Elise','Chue','Cromlech@5','2019-05-30 20:48:39'),(4,'123@123.com','Elise','Chue','Butt+1','2019-05-30 20:49:34'),(5,'private@noturbussiness.com','Karen','Haller','Butt+1','2019-05-30 21:40:49');
-/*!40000 ALTER TABLE `entity_accounts` ENABLE KEYS */;
+LOCK TABLES `entity_orders` WRITE;
+/*!40000 ALTER TABLE `entity_orders` DISABLE KEYS */;
+INSERT INTO `entity_orders` VALUES (1,8,'2019-05-27 22:16:52'),(2,16,'2019-05-27 22:18:10'),(3,24,'2019-05-27 22:29:13'),(4,24.5,'2019-05-27 22:32:56'),(5,200,'2019-05-27 22:33:41'),(6,10737400000,'2019-05-27 22:34:04'),(7,10737400000,'2019-05-27 22:34:53'),(8,2,'2019-05-27 22:38:31');
+/*!40000 ALTER TABLE `entity_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

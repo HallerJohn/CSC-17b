@@ -13,7 +13,7 @@ if (isset ($_GET['iid']) && filter_var($_GET['iid'], FILTER_VALIDATE_INT, array(
 		
 	} else { 
 		require ('../dbConnect.php'); 
-		$q = "SELECT price FROM entity_items WHERE item_id=$iid";
+		$q = "SELECT price FROM haller_shop_entity_items WHERE item_id=$iid";
 		$r = mysqli_query ($conn, $q);		
 		if (mysqli_num_rows($r) == 1) { 
 			list($price) = mysqli_fetch_array ($r, MYSQLI_NUM);
